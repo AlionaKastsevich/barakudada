@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Animation</title>
+	<link href="css/style.css" rel="stylesheet"></link>
+</head>
+<body>
+<div id="wrapForIntro" class="wrapForIntro">
+	<div id="intro" class="intro">
+		<object> 
+			<embed src="images/logo.svg" alt="intro">
+		</object>
+	</div>
+</div>
+<div id="circle" class="circle">
+	<object id="write" class="write" > 
+		<embed src="images/write.svg" alt="Write a message">
+	</object>
+	<div class="thought" id="thought">GOT IT!</div>
+	<object id="mickeyMain" class="mickeyMain"> 
+		<embed src="images/mickeyMain.svg" alt="Mickey">
+	</object>
+	<textarea rows="3" cols="25" name="letterToMickey" maxlength="33" id="userText" lang="en"></textarea>
+	<button class="send" id="send" type="button">
+		<span class="sendText">Send</span>
+		<span class="btn-bg"></span>
+	</button>
+</div>
+<ul id="toastWrap"></ul>
+<script src="script/toast.js"></script>
+</body>
+</html>

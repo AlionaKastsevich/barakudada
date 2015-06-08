@@ -1,0 +1,44 @@
+<div>
+  <form ng-submit="searchInRepos()">
+    <div>SEARCH IN GIT REPOS: </div>
+    Repos:<input type="text" ng-model="searchByRepos">
+    Max repo size: <input type="text" ng-model="maxRepoSize">
+    Min forks: <input type="text" ng-model="minForks">
+    Min stars: <input type="text" ng-model="minStars">
+    <input type="submit" value="SEARCH in REPOS">
+  </form>
+
+  <div>
+    Filter full_names:<input type="text" ng-model="query">
+    Limit to: <input type="text" ng-model="limitTo">
+    Sort by name: <select ng-model="myOrder" id="">
+            <option value="full_name">A-Z</option>
+            <option value="-full_name">Z-A</option>
+          </select>
+  </div>
+
+  <table >
+    <tr>
+      <th>Repo owner avatar</th>
+      <th>Repo owner id</th>
+      <th>Repo full name</th>
+      <th>Repo size</th>
+      <th>Forks</th>
+      <th>Stars</th>
+      <th>Add Info</th>
+    </tr>
+    <tr ng-repeat="repo in repos|orderBy:myOrder| limitTo:limitTo| filter:query">
+      <td><img ng-src="{{repo.owner.avatar_url}}"/></td>
+      <td>{{repo.owner.id}}</td>
+      <td><a href="{{repo.html_url}}" target="_blank">{{repo.full_name}}</a></td>
+      <td>{{repo.size}}</td>
+      <td>{{repo.forks}}</td>
+      <td>{{repo.stargazers_count}}</td>
+      <td ng-init="ShowAddInfo(repo,repo.owner.login,repo.name)">
+        <div style="text-align:right">{{repo.currentLang}} </div>
+        <div style="text-align:right" ng-repeat="contr in repo.contributors">{{contr.login}} <img ng-src="{{contr.avatar_url}}" alt=""></div></td>
+      <td><a href="#/myroute/{{$index}}">Details</a></td>
+    </tr>
+  </table>
+  
+</div>

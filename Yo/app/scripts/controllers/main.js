@@ -1,0 +1,21 @@
+angular.module("yoApp")
+.controller('MainCtrl',['$scope','$http','Repository','RepoSearch','$rootScope',function($scope,$http,Repository,RepoSearch,$rootScope){
+	$scope.searchByRepos="octopus";
+	$scope.maxRepoSize="500";
+	$scope.minForks='2';
+	$scope.minStars="3";
+	$scope.searchInRepos=function(){
+		RepoSearch.getInfo({searchByRepos:$scope.searchByRepos,maxRepoSize:$scope.maxRepoSize,minForks:$scope.minForks,minStars:$scope.minStars},
+			function(response){
+				$scope.repos=response.items;
+			});
+	};
+	$scope.query="";
+	$scope.myOrder="full_name";
+	$scope.limitTo="10";
+
+	$scope.ShowAddInfo=function(repo,login,name){
+		repo.currentLang=Repository.get({login:login,name:name,param:'languages'});
+		repo.contributors=Repository.query({login:login,name:name,param:'contributors'});
+	}
+}])
